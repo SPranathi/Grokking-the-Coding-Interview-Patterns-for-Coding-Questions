@@ -20,3 +20,32 @@ The outer for loop runs for all characters and the inner while loop processes ea
 Space Complexity #
 The space complexity of the algorithm is O(K)O(K), as we will be storing a maximum of ‘K+1’ characters in the HashMap.
 */
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int longest_substring(int k,string st){
+    unordered_map<char,int> umap; //for character frequency
+    int start=0,maxsubstring=0;
+    for(int i=0;i<st.length();i++){
+        char s=st[i];
+        umap[s]++;
+        //shrink the sliding window ,until we are left with k distinct characters in the d
+        while(umap.size()>k){
+            umap[st[start]]-=1;
+            if(umap[st[start]]==0)
+                umap.erase(st[start]);
+            start+=1;
+        }
+        maxsubstring=max(maxsubstring,i-start+1);
+    }
+    return maxsubstring;
+}
+
+int main(){
+    string st;
+    cin>>st;
+    int k;
+    cin>>k;
+    cout<<"Length of the longest substring: "<<longest_substring(k,st)<<endl;
+}
