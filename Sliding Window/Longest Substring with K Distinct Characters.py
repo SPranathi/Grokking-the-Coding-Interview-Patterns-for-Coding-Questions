@@ -20,3 +20,26 @@ The outer for loop runs for all characters and the inner while loop processes ea
 Space Complexity #
 The space complexity of the algorithm is O(K)O(K), as we will be storing a maximum of ‘K+1’ characters in the HashMap.
 """
+def longest_substring(k,st):
+    d={} #for character frequency
+    start,maxsubstring=0,0
+    for i in range(len(st)):
+        s=st[i]
+        if s not in d:
+            d[s]=0
+        d[s]+=1
+        #shrink the sliding window ,until we are left with k distinct characters in the d
+        while len(d)>k:
+            d[st[start]]-=1
+            if d[st[start]]==0:
+                del d[st[start]]
+            start+=1
+        maxsubstring=max(maxsubstring,i-start+1)
+    return maxsubstring
+
+
+def main():
+    st=input()
+    k=int(input())
+    print("Length of the longest substring: ",longest_substring(k,st))
+main()
