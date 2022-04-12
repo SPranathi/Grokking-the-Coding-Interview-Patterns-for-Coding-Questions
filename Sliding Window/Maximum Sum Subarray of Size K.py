@@ -33,6 +33,6 @@ def findMaxSumSubArray(k,li):
 
 def main():
     li=list(map(int,input().split()))
-    k=int(input());
+    k=int(input())
     print("Maximum sum of a subarray of size K:",findMaxSumSubArray(k,li))
 main()
