@@ -51,5 +51,5 @@ int main(){
     getline(cin,input);
     istringstream is(input);
     vector<char> v((istream_iterator<char>(is)),istream_iterator<char>());
-    //cout<<"Maximum number of Fruits: "<<MaxFruitCount(v)<<endl;
+    cout<<"Maximum number of Fruits: "<<MaxFruitCount(v)<<endl;
 } 
