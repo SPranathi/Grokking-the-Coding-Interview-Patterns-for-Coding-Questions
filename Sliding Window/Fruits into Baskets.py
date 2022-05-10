@@ -1,4 +1,4 @@
-/*
+"""
 Problem Statement #
 Given an array of characters where each character represents a fruit tree, you are given two baskets and your goal is to put maximum number of fruits in each basket. 
 The only restriction is that each basket can have only one type of fruit.
@@ -24,32 +24,24 @@ The time complexity of the above algorithm will be O(N)O(N) where ‘N’ is the
 
 Space Complexity #
 The algorithm runs in constant space O(1)O(1) as there can be a maximum of three types of fruits stored in the frequency map.
-*/
+"""
 
-#include<bits/stdc++.h>
-using namespace std;
-
-int MaxFruitCount(vector<char> v){
-    unordered_map<char,int> umap; //for character frequency
-    int start=0,maxlength=0;
-    for(int i=0;i<v.size();i++){
-        umap[v[i]]++;
-        //shrink the sliding window ,until we are left with 2 fruits in the frequency map
-        while(umap.size()>2){
-            umap[v[start]]-=1;
-            if(umap[v[start]]==0)
-                umap.erase(v[start]);
-            start+=1;
-        }
-        maxlength=max(maxlength,i-start+1);
-    }
-    return maxlength;
-}
-
-int main(){
-    string input;
-    getline(cin,input);
-    istringstream is(input);
-    vector<char> v((istream_iterator<char>(is)),istream_iterator<char>());
-    //cout<<"Maximum number of Fruits: "<<MaxFruitCount(v)<<endl;
-} 
+def MaxFruitCount(l):
+    d={}
+    start=0
+    maxlength=0
+    for i in range(len(l)):
+        if l[i] not in d:
+            d[l[i]]=0
+        d[l[i]]+=1
+        #shrink the sliding window ,until we are left with 2 fruits in the frequency map
+        while(len(d)>2):
+            d[l[start]]-=1
+            if(d[l[start]]==0):
+                del d[l[start]]
+            start+=1
+        maxlength=max(maxlength,i-start+1)
+    return maxlength
+l=list(input().split())
+print("Maximum number of Fruits:",MaxFruitCount(l)) 
+ 
