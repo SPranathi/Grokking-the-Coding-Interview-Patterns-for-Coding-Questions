@@ -20,3 +20,26 @@ Space Complexity #
 As we are expecting only the lower case letters in the input string, we can conclude that the space complexity will be O(26), to store each letter’s frequency in the HashMap, which is asymptotically equal to O(1).
 
 """ 
+def characterReplacement(s,k):
+    start,maxlength,maxrepeatchar=0,0,0
+    freqmap={}
+    for i in range(len(s)):
+        curstr=s[i]
+        if curstr not in freqmap:
+            freqmap[curstr]=0
+        freqmap[curstr]+=1
+        maxrepeatchar=max(maxrepeatchar,freqmap[curstr])
+
+        if(i-start+1-maxrepeatchar)>k:
+            freqmap[s[start]]-=1
+            start+=1
+
+        maxlength=max(maxlength,i-start+1)
+
+    return maxlength
+
+def main():
+    s=input()
+    k=int(input())
+    print(characterReplacement(s,k))
+main()
