@@ -45,5 +45,5 @@ int main(){
             ss.ignore();
     }
     cin>>k;
-    cout<<replacezeros(binary,k);
+    cout<<replacezeros(binary,k)<<endl;
 }
