@@ -48,7 +48,7 @@ bool findpermutation(string s,string p){
         freqmap[i]++;
     for(int i=0;i<s.length();i++){
         if(freqmap.find(s[i])!=freqmap.end()){
-            freqmap[s[i]]--;   //decrement thr frequency of the matched character
+            freqmap[s[i]]--;   //decrement the frequency of the matched character
             if(freqmap[s[i]]==0)        //character is completely matched
                 matched++;
         }
