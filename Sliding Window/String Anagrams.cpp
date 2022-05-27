@@ -31,3 +31,39 @@ The space complexity of the algorithm is O(M) since in the worst case, the whole
 In the worst case, we also need O(N)O(N) space for the result list, this will happen when the pattern has only one character and the string contains only that character.
 */
 
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> findAnagrams(string s, string p){
+    int start=0,matched=0;
+    unordered_map<char,int> freqmap;
+    vector<int> res;
+    for(auto i:p)
+        freqmap[i]++;
+    for(int i=0;i<s.size();i++){
+        if(freqmap.find(s[i])!=freqmap.end()){
+            freqmap[s[i]]--;
+            if(freqmap[s[i]]==0)
+                matched+=1;
+        }
+        if(matched==freqmap.size())
+            res.push_back(start);
+        if(i>=p.size()-1){
+            if(freqmap.find(s[start])!=freqmap.end()){
+                if(freqmap[s[start]]==0)
+                    matched--;
+                freqmap[s[start]]++;
+        }
+        start++;
+        }
+    }
+    return res;
+}
+
+int main(){
+    string s,p;
+    cin>>s>>p;
+    vector<int> res=findAnagrams(s,p);
+    for(auto i:res)
+        cout<<i<<" ";
+}
