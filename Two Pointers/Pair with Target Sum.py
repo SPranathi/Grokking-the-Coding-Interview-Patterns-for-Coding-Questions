@@ -1,3 +1,4 @@
+"""
 Problem Statement #
 Given an array of sorted numbers and a target sum, find a pair in the array whose sum is equal to the given target.
 
@@ -14,3 +15,28 @@ Example 2:
 Input: [2, 5, 9, 11], target=11
 Output: [0, 2]
 Explanation: The numbers at index 0 and 2 add up to 11: 2+9=11 
+
+Time Complexity #
+The time complexity of the above algorithm will be O(N), where ‘N’ is the total number of elements in the given array.
+
+Space Complexity #
+The algorithm runs in constant space O(1).
+"""
+
+def targetpair(li,target):
+    l,r=0,len(li)-1
+    while(l<r):
+        if target==li[l]+li[r]:
+            return [l,r]
+        if target>li[l]+li[r]:
+            l+=1
+        else:
+            r-=1
+    return [-1,-1]
+
+def main():
+    li=list(map(int,input().split()))
+    target=int(input())
+    print(targetpair(li,target))
+
+main()
