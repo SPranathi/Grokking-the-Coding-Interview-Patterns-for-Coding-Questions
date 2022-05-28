@@ -42,7 +42,7 @@ vector<int> findwordConcatenation(string s,vector<string> words){
     vector<int> res;
     int wordcount=words.size(),wordlen=words[0].length();
 
-    for(int i=0;i<=s.length()-wordcount*wordlen;i++){
+    for(int i=0;i<s.length()-wordcount*wordlen+1;i++){
         unordered_map<string,int> seen;
         for(int j=0;j<wordcount;j++){
             int nextindex=i+j*wordlen;
