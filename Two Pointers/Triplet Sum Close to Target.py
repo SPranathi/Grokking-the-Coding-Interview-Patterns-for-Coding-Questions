@@ -21,3 +21,29 @@ Space complexity #
 The space complexity of the above algorithm will be O(N) which is required for sorting.
 """
 
+def searchTriplet(li,target):
+    li.sort()   
+    smalldiff=999999        #taking max as 999999
+    for i in range(len(li)):
+        l,r=i+1,len(li)-1
+        while l<r:
+            #comparing the sum of three numbers to the targetsum can cause overflow
+            #so,we will try to find a target difference
+            targetdiff=target-li[i]-li[l]-li[r]
+            if targetdiff==0:   #we have found a triplet with exact sum
+                return target-targetdiff     #return sum of all the numbers
+            if abs(targetdiff)<abs(smalldiff):
+                smalldiff=targetdiff    #save the closet difference
+            if targetdiff>0:
+                l+=1
+            else:
+                r-=1
+    return target-smalldiff
+
+
+def main():
+    li=list(map(int,input().split()))
+    target=int(input())
+    print(searchTriplet(li,target))
+
+main()
