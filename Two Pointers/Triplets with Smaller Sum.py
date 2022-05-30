@@ -23,3 +23,30 @@ Space complexity #
 Ignoring the space required for the output array, the space complexity of the above algorithm will be O(N) 
 which is required for sorting if we are not using an in-place sorting algorithm.
 """ 
+
+def search_pair(arr,targetsum,i):
+    count,l=0,i+1
+    r=len(arr)-1
+    while(l<r):
+        if(arr[l]+arr[r]<targetsum):
+            #since arr[r]>=arr[l], therefore, we can replace r by any number between
+            #l and r to get a sum less than the targetsum
+            count+=r-l
+            l+=1
+        else:
+            r-=1    #we need a pair with a smaller sum
+    return count
+
+def Triplet(arr,target):
+    arr.sort()
+    count=0
+    for i in range(len(arr)-2):
+        count+=search_pair(arr,target-arr[i],i)
+    return count
+
+def main():
+    li=list(map(int,input().split()))
+    target=int(input())
+    print(Triplet(li,target))
+
+main()
