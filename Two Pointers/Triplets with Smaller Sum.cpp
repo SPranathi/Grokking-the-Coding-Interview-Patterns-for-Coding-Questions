@@ -27,7 +27,7 @@ which is required for sorting if we are not using an in-place sorting algorithm.
 #include<bits/stdc++.h>
 using namespace std;
 
-int searchpair(vector<int> &arr,int targetsum,int i){
+int search_pair(vector<int> &arr,int targetsum,int i){
     int count=0,l=i+1,r=arr.size()-1;
     while(l<r){
         if(arr[l]+arr[r]<targetsum){
@@ -43,11 +43,11 @@ int searchpair(vector<int> &arr,int targetsum,int i){
     return count;
 }
 
-vector<vector<int>> searchtriplets(vector<int> &arr){
+int triplets(vector<int> &arr,int target){
     sort(arr.begin(),arr.end());
     int count=0;
     for(int i=0;i<arr.size()-2;i++){
-        count+=searchpair(arr,target-arr[i],i);
+        count+=search_pair(arr,target-arr[i],i);
     }
     return count;
 }
@@ -65,5 +65,5 @@ int main(){
     }
     int target;
     cin>>target;
-    cout<<searchtriplet(arr,target)<<endl;
+    cout<<triplets(arr,target)<<endl;
 }
