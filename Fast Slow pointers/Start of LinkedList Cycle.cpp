@@ -1,18 +1,16 @@
 /*
 Problem Statement #
-Given the head of a Singly LinkedList, write a function to determine if the LinkedList has a cycle in it or not.
-Given the head of a LinkedList with a cycle, find the length of the cycle.
+Given the head of a Singly LinkedList that contains a cycle, write a function to find the starting node of the cycle.
 
- Example: 
- head 
- Following LinkedList has a cycle: head->1->2->3->4->5->6
+Example: 
+head 
+Following LinkedList has a cycle: head->1->2->3->4->5->6
                                                ^        |
                                                |________|   
- Following LinkedList doesn't have a cycle: 
- head->2->4->6->8->10->null 
+
 
 Time and Space Complexity: The above algorithm runs in O(N) time complexity and O(1) space complexity.
-*/ 
+*/  
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -27,6 +25,20 @@ class ListNode{
     }
 };
 
+ListNode *find_start(ListNode *head,int cycle_len){
+    ListNode *ptr1=head;
+    ListNode *ptr2=head;
+    while(cycle_len>0){
+        ptr2=ptr2->next;
+        cycle_len--;
+    }
+    while(ptr1!=ptr2){
+        ptr1=ptr1->next;
+        ptr2=ptr2->next;
+    }
+    return ptr1;
+}
+
 int cycle_length(ListNode *slow){
     ListNode *current=slow;
     int cycle_len=0;
@@ -38,16 +50,19 @@ int cycle_length(ListNode *slow){
     }
     return 0;
 }
-int findcyclelength(ListNode *head){
+ListNode *findcyclestart(ListNode *head){
     ListNode *fast=head;
     ListNode *slow=head;
+    int cycle_len=0;
     while(fast!=NULL && fast->next!=NULL){
         fast=fast->next->next;
         slow=slow->next;
-        if(slow==fast)
-            return cycle_length(slow);
+        if(slow==fast){
+            cycle_len=cycle_length(slow);
+            break;
+        }
     }
-    return 0;
+    return find_start(head,cycle_len);
 }
 
 int main(){
@@ -58,6 +73,7 @@ int main(){
     head->next->next->next->next=new ListNode(5);
     head->next->next->next->next->next=new ListNode(6);
     head->next->next->next->next->next->next=head->next->next;
-    cout<<findcyclelength(head)<<endl;
+    ListNode *res=findcyclestart(head);
+    cout<<res->value<<endl;
     
 }

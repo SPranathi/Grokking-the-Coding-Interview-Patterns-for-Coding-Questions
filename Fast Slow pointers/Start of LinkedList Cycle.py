@@ -17,14 +17,16 @@ class Node:
         self.value=value
         self.next=next
 
-def has_cycle(head):
+def find_cycle_start(head):
+    cycle_len=0
     slow=fast=head
     while fast is not None and fast.next is not None:
         fast=fast.next.next
         slow=slow.next
         if fast==slow:
-            return cycle_length(slow)
-    return 0
+            cycle_len=cycle_length(slow)
+            break
+    return find_start(head,cycle_len)
 
 def cycle_length(slow):
     current=slow
@@ -36,6 +38,17 @@ def cycle_length(slow):
             break
     return cycle_len
 
+def find_start(head,cycle_len):
+    ptr1=ptr2=head
+    #move ptr2 ahead 'cycle_length' nodes
+    while cycle_len>0:
+        ptr2=ptr2.next
+        cycle_len-=1
+    while ptr1!=ptr2:
+        ptr1=ptr1.next
+        ptr2=ptr2.next
+    return ptr1
+
 def main():
     head=Node(1)
     head.next=Node(2)
@@ -44,7 +57,7 @@ def main():
     head.next.next.next.next=Node(5)
     head.next.next.next.next.next=Node(6)
     head.next.next.next.next.next.next=head.next.next
-    print(has_cycle(head))
+    print(str(find_cycle_start(head).value))
 
 
 main()
