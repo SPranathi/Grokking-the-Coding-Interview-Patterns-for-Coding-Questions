@@ -7,7 +7,7 @@ Example:  12 7 1 9 -1 10 5
  
 S: 23
 Output: true
-Explaination: The path with sum '23' is highlighted 
+Explaination: The path with sum '23' is there 
 S: 16
 Output: false
 Explaination: There is no root-to-leaf path with sum '16'.
