@@ -36,7 +36,7 @@ int calculateHeight(TreeNode *root,int &treediameter){
     int leftTreeHeight=calculateHeight(root->left,treediameter);
     int rightTreeHeight=calculateHeight(root->right,treediameter);
 
-    //diameter at the current node will be equal to height of left+right subtrees+1 for current node
+    //diameter at the current node will be equal to height of left+right subtrees for current node
     int diameter=leftTreeHeight+rightTreeHeight;
 
     //update the global tree diameter
