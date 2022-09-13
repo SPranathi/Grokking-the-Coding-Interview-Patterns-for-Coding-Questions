@@ -17,7 +17,7 @@ Output: 15
 Explanation: None of the jobs overlap, therefore we will take the maximum load of any job which is 15. 
 
 Time complexity #
-The time complexity of the above algorithm is O(N∗logN), where ‘N’ is the total number of jobs. This is due to the sorting that we did in the beginning.
+The time complexity of the above algorithm is O(N*logN), where ‘N’ is the total number of jobs. This is due to the sorting that we did in the beginning.
 Also, while iterating the jobs, we might need to poll/offer jobs to the priority queue. Each of these operations can take O(logN). Overall our algorithm will take O(NlogN).
 
 Space complexity #
