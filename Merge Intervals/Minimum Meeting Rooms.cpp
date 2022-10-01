@@ -51,7 +51,7 @@ int min_rooms(vector<Meeting> &meetings){
     int minRooms=0;
     priority_queue<Meeting,vector<Meeting>,endcompare>  minHeap;
     for (auto meeting:meetings){
-        //remove all teh meetings that have ended
+        //remove all the meetings that have ended
         while(!minHeap.empty() && meeting.start>=minHeap.top().end)
             minHeap.pop();
         //add the current meeting into min_heap
